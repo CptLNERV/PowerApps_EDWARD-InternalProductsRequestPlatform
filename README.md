@@ -1,22 +1,25 @@
 # PowerApps_EDWARD-InternalProductsRequestPlatform
 
-需求：业务部门需要一个系统来自动化处理内部产品需求，这些产品将用在产品展示/内部使用 等等非销售用途。
-需要自动话解决产品选择/请求发送/请求审批/请求追踪/产品交付/数据统计 等流程
+Requirement: The business unit needs a system to automate the processing of internal product requests that will be used for product demonstration/internal use, etc. for non-sales purposes.
+Processes such as product selection / request delivery / request approval / request tracking / product delivery / statistics need to be automated.
 
-得利于Azure工作环境，我们将使用Power Apps+Power Automate来搭建这一系统
+Thanks to the Azure work environment, we will use Power Apps + Power Automate to build this system
 
-前端方案:使用Power Apps搭建前端需求页面
+Front-end solutions: Building front-end requirements pages with Power Apps
+
 # 1. Page Selection
-
-
+In addition to the information entered on the requirements page itself, there is some information that the applicant needs to select from a qualifying list, such as product information:
+As shown in the picture below
 
 ![menu dropdown](https://github.com/CptLNERV/PowerApps_EDWARD-InternalProductsRequestPlatform/assets/20716430/416f1f53-9006-464f-ac25-fbb70c8fee73) 
 
+After linking the Sharepoint list as a database, we use the information in the database as an option
 
-
+Level 1 options
 ```
 ForAll(Distinct(ProductListForAPPS,type), {Result: ThisRecord.Value})
 ```
+Level 2 options
 ```
 SortByColumns
 (
@@ -31,8 +34,7 @@ SortByColumns
 )
 ```
 
-
-
+Level 3 options
 ```
 ForAll(Distinct(
     SortByColumns(
