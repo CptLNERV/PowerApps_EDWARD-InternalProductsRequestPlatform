@@ -1,5 +1,4 @@
-# PowerApps_EDWARD-InternalProductsRequestPlatform
-
+# PowerApps_Selection Page
 Requirement: The business unit needs a system to automate the processing of internal product requests that will be used for product demonstration/internal use, etc. for non-sales purposes.
 Processes such as product selection / request delivery / request approval / request tracking / product delivery / statistics need to be automated.
 
@@ -53,9 +52,9 @@ Add the selected result to the gallery
 Collect(
     colProductA,
     {
-        // request number逻辑 mr+ 年月日 yyyyMMdd + 申请人姓首字母+ 名首字母 + unique Left(Text(Now()*1),4)
-    //1. 年月日 yyyyMMdd Year(Today())&Month(Today())&Day(Today()
-    //2. 申请人姓首字母+ 名首字母 Left(Office365Users.UserProfile(User().Email).GivenName,1)&Left(Office365Users.UserProfile(User().Email).Surname,1)
+        // request number logic mr+ year month day yyyyMMdd + applicant's last name initial + first name initial + unique Left(Text(Now()*1),4)
+    //1. Year Month Day yyyyyMMdd Year(Today())&Month(Today())&Day(Today())
+    //2. Applicant Surname Initial + First Name Initial Left(Office365Users.UserProfile(User().Email).GivenName,1)&Left(Office365Users.UserProfile(User().Email).Surname,1)
     //3. unique Left(Text(Now()*1),4)  Left(Text(Now()*1),4)
     /*RequestNumber:"IPR"&Year(Today())&Month(Today())&Day(Today())& Left(Office365Users.UserProfile(User().Email).GivenName,1)
     &Left(Office365Users.UserProfile(User().Email).Surname,1)&Left(Text(Now()*24),4),*/
@@ -71,7 +70,7 @@ Collect(
         
     }
 );
-//完成action之后，需要重设空格
+//After completing the action, the space needs to be reset.
 Reset(TextInput8);
 Reset(Dropdown_Product);
 Reset(TextInput3);
@@ -79,7 +78,7 @@ Reset(Checkbox1);
 Reset(Dropdown_Type);
 Reset(Dropdown_Series)
 
-//暂时不要需要显示成功窗口
+//Don't need to show the success window for now
 //Set(varShowSuccess,true)
 ```
 
@@ -104,9 +103,9 @@ Patch('INTERN PRODUCT REQUEST', Defaults('INTERN PRODUCT REQUEST'),
         NeedShip:varNeedShip,
         Comments:TextInput6_1.Text,
 
-    // request number逻辑 mr+ 年月日 yyyyMMdd + 申请人姓首字母+ 名首字母 + unique Left(Text(Now()*1),4)
-    //1. 年月日 yyyyMMdd Year(Today())&Month(Today())&Day(Today()
-    //2. 申请人姓首字母+ 名首字母 Left(Office365Users.UserProfile(User().Email).GivenName,1)&Left(Office365Users.UserProfile(User().Email).Surname,1)
+    // request number logic mr+ year month day yyyyMMdd + applicant's last name initial + first name initial + unique Left(Text(Now()*1),4)
+    //1. Year Month Day yyyyMMdd Year(Today())&Month(Today())&Day(Today())
+    //2. Applicant Surname Initial + First Name Initial Left(Office365Users.UserProfile(User().Email).GivenName,1)&Left(Office365Users.UserProfile(User().Email).Surname,1)
     //3. unique Hour(Now())& Minute(Now())
         RequestNumber: "IPR" & Year(Today()) & Month(Today()) & Day(Today()) & Left(Office365Users.UserProfile(User().Email).GivenName,1) & Left(Office365Users.UserProfile(User().Email).Surname,1) & Hour(Now())& Minute(Now()),
 
@@ -122,9 +121,7 @@ Collect(
 );
 
 
-//清楚 col product中的数据
+//Clearing data in col product
 
 Navigate(EndPage)
 ```
-
-# 2. Page2 
